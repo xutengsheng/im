@@ -1,0 +1,118 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin 步骤3
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.xts.im"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // 设置支持multidex
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file('xts.jks')
+            storePassword "123456"
+            keyAlias "xts"
+            keyPassword "123456"
+        }
+    }
+
+    //greendao配置  步骤5
+    greendao {
+        //数据库版本号，升级时修改,只能增加,不能减少
+        schemaVersion 2
+        //生成的DAO，DaoMaster和DaoSession的包路径。默认与表实体所在的包路径相同
+        daoPackage 'com.xts.im.db'
+        //生成源文件的路径。默认源文件目录是在build目录中的(build/generated/source/greendao)
+        targetGenDir 'src/main/java'
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:design:27.1.1'
+    api project(path: ':easeui')
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    // 必要依赖，解析json字符所用
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    // 必要依赖，和Rxjava结合必须用到，下面会提到
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    // 必要rxjava2依赖
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // 必要rxandrroid依赖，切线程时需要用到
+    //1.1.0 （1.0.5及以前版本的老用户升级需谨慎，API改动过大）
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21'
+    //没有使用特殊Header，可以不加这行
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-21'
+    //Glide 4.x
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //图片变换的依赖
+    implementation 'jp.wasabeef:glide-transformations:3.3.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+
+    implementation 'com.github.prolificinteractive:material-calendarview:1.4.3'
+
+    //轮播图
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'org.sufficientlysecure:html-textview:3.9'
+
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
+    implementation 'com.github.qdxxxx:StickyHeaderDecoration:1.0.1'
+
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    //jsoup 解析html数据
+    implementation 'org.jsoup:jsoup:1.11.3'
+    //RecyclerView Adapter
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
+
+    //greenDAO配置  步骤4
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+
+    implementation files('libs/umeng-common-2.1.0.jar')
+    implementation files('libs/umeng-share-core-6.9.6.jar')
+    implementation files('libs/umeng-share-QQ-simplify-6.9.6.jar')
+    implementation files('libs/umeng-share-sina-simplify-6.9.6.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.6.jar')
+    implementation files('libs/umeng-shareboard-widget-6.9.6.jar')
+    implementation files('libs/umeng-sharetool-6.9.6.jar')
+
+}

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Im</string>
+    <string name="unknow_error">未知错误</string>
+    <string name="conn_error">连接失败</string>
+    <string name="conn_timeout">连接超时</string>
+    <string name="net_error">网络错误</string>
+    <string name="parse_error">解析异常</string>
+    <string name="net_unused">当前网络不可用</string>
+    <string name="conversation">会话</string>
+    <string name="contacts">联系人</string>
+    <string name="discovery">发现</string>
+
+    <string name="info">资讯</string>
+    <string name="zhihu">知乎日报</string>
+    <string name="wechat">微信精选</string>
+    <string name="gank">干货集中营</string>
+    <string name="gold">稀土掘金</string>
+    <string name="v2ex">V2EX</string>
+    <string name="option">选项</string>
+    <string name="collect">收藏</string>
+    <string name="settings">设置</string>
+    <string name="about">关于</string>
+    <string name="daily_news">日报</string>
+    <string name="section">专栏</string>
+    <string name="hot">热门</string>
+    <string name="confirm">确定</string>
+    <string name="daimajia">代码家</string>
+    <string name="day_or_night">夜间模式</string>
+    <string name="it_info">IT资讯</string>
+    <string name="guide">导航</string>
+
+</resources>
